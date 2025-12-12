@@ -20,12 +20,12 @@ public class Servidor {
         try {
             servidor = new ServerSocket(PUERTO);
             System.out.println("Servidor escuchando...");
+            boolean salir = true;
 
-            // El cliente siempre está a la espera
-            while(true){
+            while(!salir){
+
                 // Esperar a que un cliente llame al servidor/realice una petición
                 sc = servidor.accept();
-                Thread.sleep(15000);
 
                 System.out.println("Cliente conectado");
                 in = new DataInputStream(sc.getInputStream());
@@ -35,14 +35,22 @@ public class Servidor {
                 String mensaje = in.readUTF();
                 System.out.println(mensaje);
 
-                // Envía un mensaje
-                out.writeUTF("Le saludo desde el servidor");
+                if (mensaje.equals("FIN")){
+
+                    // Envía un mensaje
+                    out.writeUTF("conexión terminada");
+                    salir = false;
+
+                } else {
+
+                    out.writeUTF(mensaje);
+                }
 
                 // Cerrar socket
                 sc.close();
                 System.out.println("Conexión finalizada");
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
