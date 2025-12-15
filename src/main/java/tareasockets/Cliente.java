@@ -15,7 +15,7 @@ public class Cliente {
         // Puerto del servidor
         final int PORT = 5000;
 
-        // Para leer y enviar datos
+        // Flujos para leer y enviar datos
         DataInputStream in = null;
         DataOutputStream out = null;
 
@@ -34,6 +34,7 @@ public class Cliente {
                 System.out.println("Escribe un mensaje: ");
                 envio = teclado.nextLine();
 
+                //Si el cliente escribe fin salir se vuelve verdadero y sale del bucle
                 if (envio.equalsIgnoreCase("fin")) {
                     salir = true;
                     socket.close();
@@ -42,12 +43,10 @@ public class Cliente {
                 }
             }
 
-            // Recibimos la respuesta del servidor
-            String mensaje = in.readUTF();
-            System.out.println(mensaje);
-
-            // Cerramos socket
+            // Cerramos socket y los flujos
             socket.close();
+            in.close();
+            out.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
