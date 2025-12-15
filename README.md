@@ -1,7 +1,6 @@
-## Tarea Socket e Hilos
-
+# Tarea Socket e Hilos
 ## Autores: 
-Adán Gavira y Moisés Ortiz
+### Adán Gavira y Moisés Ortiz
 
 ## ¿Qué ocurre con el Cliente 2? ¿Por qué no puede ni siquiera enviar su mensaje?
 El cliente 2 no podrá enviar un mensaje ya que el servidor está dormido y no podrá recibir ningún mensaje. 
@@ -10,16 +9,16 @@ Además, cuando mandemos un mensaje, el cliente se queda conectado pero el servi
 ## Capturas con resultado del proyecto
 
 <img width="1284" height="191" alt="image" src="https://github.com/user-attachments/assets/ccf6f22b-a614-4fe1-badb-3db9a0d730d7" />
-Cliente 1
+**Cliente 1**
 
 <img width="1289" height="189" alt="image" src="https://github.com/user-attachments/assets/e99cb848-474f-4593-b713-562048515577" />
-Cliente 2
+**Cliente 2**
 
 <img width="1284" height="188" alt="image" src="https://github.com/user-attachments/assets/cf0fa2ec-c0df-4bfe-a08f-c4a9720ad70b" />
-Cliente 3
+**Cliente 3**
 
 <img width="1286" height="263" alt="image" src="https://github.com/user-attachments/assets/ba7dc302-d033-4194-bc03-d28644104f5e" />
-Servidor
+**Servidor**
 
 
 <img width="1287" height="265" alt="image" src="https://github.com/user-attachments/assets/171eab1b-71bd-4ebb-aac6-12863b466b37" />
