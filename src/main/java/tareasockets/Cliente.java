@@ -37,7 +37,7 @@ public class Cliente {
                 //Si el cliente escribe fin salir se vuelve verdadero y sale del bucle
                 if (envio.equalsIgnoreCase("fin")) {
                     salir = true;
-                    socket.close();
+                    out.writeUTF(envio);
                 } else {
                     out.writeUTF(envio);
                 }
@@ -47,6 +47,7 @@ public class Cliente {
             socket.close();
             in.close();
             out.close();
+            teclado.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
