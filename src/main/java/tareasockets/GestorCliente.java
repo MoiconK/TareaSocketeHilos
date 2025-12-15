@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class GestorCliente implements Runnable{
     Socket socket;
@@ -30,6 +31,7 @@ public class GestorCliente implements Runnable{
             while(salir){
                 String mensaje = in.readUTF();
                 if (mensaje.equalsIgnoreCase("fin")) {
+                    System.out.println("Cliente " + this.socket.getRemoteSocketAddress() +" se ha desconectado");
                     salir = false;
                 } else {
                     System.out.println("Cliente "+this.socket.getRemoteSocketAddress()+" dice: "+mensaje);
@@ -40,14 +42,8 @@ public class GestorCliente implements Runnable{
             in.close();
             out.close();
         } catch (IOException e) {
-            //El servidor tiene un mensaje si el cliente se desconecta de forma inesperada
+            //El cliente tiene un mensaje si el cliente se desconecta de forma inesperada
             System.out.println("El cliente "+this.socket.getRemoteSocketAddress()+" se ha desconectado inesperadamente");
-        } finally{
-            try {
-                this.socket.close();
-            } catch (IOException e) {
-                System.out.println("Error con el servidor");
-            }
         }
     }
 }
