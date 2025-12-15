@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Cliente {
     static void main(String[] args) {
@@ -18,14 +19,28 @@ public class Cliente {
         DataInputStream in = null;
         DataOutputStream out = null;
 
+        Scanner teclado = new Scanner(System.in);
+
         try {
             Socket socket = new Socket(HOST, PORT);
 
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
-            // Envíamos una petición al servidor
-            out.writeUTF("Hola soy el cliente1");
+            boolean salir = false;
+            String envio;
+
+            while(!salir){
+                System.out.println("Escribe un mensaje: ");
+                envio = teclado.nextLine();
+
+                if (envio.equalsIgnoreCase("fin")) {
+                    salir = true;
+                    socket.close();
+                } else {
+                    out.writeUTF(envio);
+                }
+            }
 
             // Recibimos la respuesta del servidor
             String mensaje = in.readUTF();
