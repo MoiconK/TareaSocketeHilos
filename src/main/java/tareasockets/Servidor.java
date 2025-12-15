@@ -2,6 +2,7 @@ package tareasockets;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,7 +19,7 @@ public class Servidor {
         DataOutputStream out = null;
 
         final int PUERTO = 5000;
-        boolean salir = false;
+
 
         try {
             servidor = new ServerSocket(PUERTO);
@@ -31,19 +32,23 @@ public class Servidor {
 
                 in = new DataInputStream(sc.getInputStream());
                 out = new DataOutputStream(sc.getOutputStream());
+                boolean salir = true;
 
-                // Leo el mensaje del cliente
-                String mensaje = in.readUTF();
-                while(!salir){
+                // Leo el mensaje del clienteç
+                while(salir){
+                    String mensaje = in.readUTF();
                     if (mensaje.equalsIgnoreCase("fin")) {
-                        salir = true;
+                        salir = false;
                     } else {
-                        System.out.println(mensaje);
+                        System.out.println("Cliente dice: "+mensaje);
+                        out.writeUTF(mensaje);
                     }
                 }
                 // Envía un mensaje
                 out.writeUTF("Le saludo desde el servidor");
-
+                sc.close();
+                in.close();
+                out.close();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
