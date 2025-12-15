@@ -26,6 +26,7 @@ Además, cuando mandemos un mensaje, el cliente se queda conectado pero el servi
 
 
 <img width="1287" height="265" alt="image" src="https://github.com/user-attachments/assets/171eab1b-71bd-4ebb-aac6-12863b466b37" />
+
 Cuando un cliente sale del chat, automáticamente en el servidor sale un mensaje de que el cliente ha salido del chat. 
 
 <img width="1290" height="298" alt="image" src="https://github.com/user-attachments/assets/67719960-82ef-4b21-b26f-48a13677f9cc" />
