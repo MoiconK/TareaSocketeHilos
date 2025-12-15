@@ -1,3 +1,5 @@
+package tareasockets;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -20,12 +22,12 @@ public class Servidor {
         try {
             servidor = new ServerSocket(PUERTO);
             System.out.println("Servidor escuchando...");
-            boolean salir = true;
 
-            while(!salir){
-
+            // El cliente siempre está a la espera
+            while(true){
                 // Esperar a que un cliente llame al servidor/realice una petición
                 sc = servidor.accept();
+
 
                 System.out.println("Cliente conectado");
                 in = new DataInputStream(sc.getInputStream());
@@ -35,16 +37,8 @@ public class Servidor {
                 String mensaje = in.readUTF();
                 System.out.println(mensaje);
 
-                if (mensaje.equals("FIN")){
-
-                    // Envía un mensaje
-                    out.writeUTF("conexión terminada");
-                    salir = false;
-
-                } else {
-
-                    out.writeUTF(mensaje);
-                }
+                // Envía un mensaje
+                out.writeUTF("Le saludo desde el servidor");
 
                 // Cerrar socket
                 sc.close();
